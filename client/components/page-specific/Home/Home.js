@@ -8,44 +8,44 @@ import features from '../../data/features'
 import React from 'react'
 
 export default class Home extends React.Component{
+
   constructor(props) {
       super(props);
+      this.state = {
+          featureArr: []
+      }
+
+      let featureObj = {}
+      let tempFeatureArr = [];
+
+      for (var key in features) {
+          if (features.hasOwnProperty(key)) {
+              // do stuff
+              let featureObj = {
+                name: features[key].name,
+                description: features[key].description,
+                flag: features[key].flag,
+                getFeedback: features[key].feedback,
+                publicApi: key
+              }
+              tempFeatureArr.push(featureObj);
+          }
+      }
+      console.log("AYYY");
+      console.log(tempFeatureArr);
+      this.setState({ featureArr: tempFeatureArr })
   }
 
   _updateFeature(color){
     console.log("COLOR" + color);
+    console.log(featureArr);
   }
+
   render () {
 
+    console.log(this.state.featureArr);
 
-    let featureArr = [];
-    let featureObj = {}
-
-    for (var key in features) {
-        if (features.hasOwnProperty(key)) {
-            // do stuff
-            let featureObj = {
-              name: features[key].name,
-              description: features[key].description,
-              flag: features[key].flag,
-              getFeedback: features[key].feedback,
-              publicApi: key
-            }
-            featureArr.push(featureObj);
-        }
-    }
-
-    console.log(featureArr);
-
-    let tester = ["1","2"]
-
-    let featureList = tester.map(function(object, i){
-        return <FeatureItem featureName={i}/>;
-    })
-    console.log("FeaureList");
-    console.log(featureList);
-
-    let FeatureList = featureArr.map((feature) => {
+    let FeatureList = this.state.featureArr.map((feature) => {
       console.log("looping");
       console.log(feature.name);
       return (

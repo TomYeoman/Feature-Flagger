@@ -27,14 +27,10 @@ class FeatureItem extends React.Component {
   }
 
   _toggleFeature(name) {
-    console.log(name);
-    alert("Trying to toggle feature")
-    console.log("ASSD");
     this.props.updateFeature(name);
   }
 
   render () {
-    console.log("ELLO m8");
     let buttonName = name
     return (
       <div className="clearfix header-large text-center">
