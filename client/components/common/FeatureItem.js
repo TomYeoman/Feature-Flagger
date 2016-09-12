@@ -44,7 +44,7 @@ class FeatureItem extends React.Component {
         <div className="col-xs-3">
           <div className="example-usage">
             <p>Switch state: {this.state.on ? 'On' : 'Off'}</p>
-             <Switch className={styles.featureTitle} onClick={this._toggleFeature.bind(this, this.props.publicApi)} on={this.state.on}/>
+             <Switch onClick={this._toggleFeature.bind(this, this.props.publicApi)} on={this.state.on}/>
           </div>
 
         </div>

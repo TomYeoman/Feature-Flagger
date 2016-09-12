@@ -11,9 +11,6 @@ export default class Home extends React.Component{
 
   constructor(props) {
       super(props);
-      this.state = {
-          featureArr: []
-      }
 
       let featureObj = {}
       let tempFeatureArr = [];
@@ -33,12 +30,20 @@ export default class Home extends React.Component{
       }
       console.log("AYYY");
       console.log(tempFeatureArr);
-      this.setState({ featureArr: tempFeatureArr })
+
+      this.state = {
+          featureArr: tempFeatureArr,
+          test: ""
+      }
+
+      // Bind the state to our function
+      this._updateFeature = this._updateFeature.bind(this)
+
   }
 
   _updateFeature(color){
-    console.log("COLOR" + color);
-    console.log(featureArr);
+    console.log("Feature: " + color);
+    console.log(this.state.featureArr);
   }
 
   render () {
