@@ -12,6 +12,9 @@ export default class Home extends React.Component{
       super(props);
   }
 
+  _updateFeature(color){
+    console.log("COLOR" + color);
+  }
   render () {
 
 
@@ -52,6 +55,7 @@ export default class Home extends React.Component{
             flag={feature.flag}
             getFeedback={feature.getFeedback}
             publicApi={feature.publicApi}
+            updateFeature={this._updateFeature}
           />
       );
     });

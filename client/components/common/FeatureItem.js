@@ -23,17 +23,19 @@ class FeatureItem extends React.Component {
     super(props);
     console.log("props");
     console.log(props);
-    this.state = {flag: props.flag};
+    this.state = {on: props.flag};
   }
 
-  _submitForm(e) {
-
-    e.preventDefault();
-    alert("Trying to send email")
+  _toggleFeature(name) {
+    console.log(name);
+    alert("Trying to toggle feature")
     console.log("ASSD");
+    this.props.updateFeature(name);
   }
 
   render () {
+    console.log("ELLO m8");
+    let buttonName = name
     return (
       <div className="clearfix header-large text-center">
         <hr/>
@@ -45,9 +47,8 @@ class FeatureItem extends React.Component {
         </div>
         <div className="col-xs-3">
           <div className="example-usage">
-
-            <Switch onClick={() => {this._submitForm.bind(this)}} on={this.state.flag}/>
-
+            <p>Switch state: {this.state.on ? 'On' : 'Off'}</p>
+             <Switch className={styles.featureTitle} onClick={this._toggleFeature.bind(this, this.props.publicApi)} on={this.state.on}/>
           </div>
 
         </div>
