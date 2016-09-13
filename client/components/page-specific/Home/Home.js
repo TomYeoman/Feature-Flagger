@@ -6,6 +6,7 @@ import FeatureItem from '../../common/FeatureItem';
 import features from '../../data/features'
 
 import React from 'react'
+var socket = io.connect();
 
 export default class Home extends React.Component{
 
@@ -38,12 +39,25 @@ export default class Home extends React.Component{
 
       // Bind the state to our function
       this._updateFeature = this._updateFeature.bind(this)
+      this._sendFeatures = this._sendFeatures.bind(this)
 
   }
 
-  _updateFeature(color){
-    console.log("Feature: " + color);
+  componentDidMount() {
+      socket.on('connection', function (socket){
+      socket.on('requestFeatures', this._sendFeatures);
+
+    }
+  }
+
+  _updateFeature(name, state){
+    console.log(`Name = ${name}, State = ${state}`);
     console.log(this.state.featureArr);
+    socket.emit('sendFeatures', this.state.featureArr);
+  }
+
+  _sendFeatures() {
+    socket.emit('sendFeatures', this.state.featureArr);
   }
 
   render () {
@@ -78,7 +92,7 @@ export default class Home extends React.Component{
           <div className="form-group">
               <button className="btn btn-primary btn-lg pull-right"> Add Feature </button>
           </div>
-
+          <hr />
           {FeatureList}
 
         </div>

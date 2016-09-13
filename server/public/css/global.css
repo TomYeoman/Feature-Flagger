@@ -31,3 +31,8 @@
 .switch.disabled {
     cursor: not-allowed;
 }
+
+
+hr{
+  clear:both;
+}

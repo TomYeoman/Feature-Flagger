@@ -12,16 +12,13 @@ export default () => {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <Link to="/" className="navbar-brand" href="#">Feature Flipper</Link>
+                    <Link to="/" className="navbar-brand" href="#">Feature Manager</Link>
                 </div>
 
                 <div id="main-menu" className="navbar-collapse collapse">
                     <ul className="nav navbar-nav">
-                        <li id="HomeMenuItem"><Link to="/Home" href="#">Home</Link></li>
-                        <li id="AboutMenuItem"><Link to="/About" href="#">About</Link></li>
-                        <li id="ContactMenuItem"><Link to="/Contact" href="#">Contact</Link></li>
                         <li className="dropdown">
-                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span className="caret"></span></a>
                             <ul className="dropdown-menu">
                                 <li><a href="#">Action</a></li>
                                 <li><a href="#">Another action</a></li>

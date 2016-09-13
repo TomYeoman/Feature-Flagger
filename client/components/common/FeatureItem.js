@@ -21,13 +21,16 @@ let styles = {
 class FeatureItem extends React.Component {
   constructor(props) {
     super(props);
-    console.log("props");
-    console.log(props);
     this.state = {on: props.flag};
+    this._toggleFeature = this._toggleFeature.bind(this);
+
   }
 
   _toggleFeature(name) {
-    this.props.updateFeature(name);
+    console.log(this.state);
+    this.setState({on: !this.state.on})
+    // Call parent component update function
+    this.props.updateFeature(name, this.state.on);
   }
 
   render () {
@@ -42,8 +45,10 @@ class FeatureItem extends React.Component {
           <span style={styles.description}> {this.props.description} </span>
         </div>
         <div className="col-xs-3">
+          <span style={styles.description}> {this.props.publicApi} </span>
+        </div>
+        <div className="col-xs-3">
           <div className="example-usage">
-            <p>Switch state: {this.state.on ? 'On' : 'Off'}</p>
              <Switch onClick={this._toggleFeature.bind(this, this.props.publicApi)} on={this.state.on}/>
           </div>
 
