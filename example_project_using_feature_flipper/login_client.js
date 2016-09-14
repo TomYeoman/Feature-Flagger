@@ -11,6 +11,7 @@ window.onload = function() {
 		});
 }
 
+const generatePage = () => {
 		console.log(featureObj[0].newDashboard.flag);
 		if (featureObj[0].newDashboard.flag){
 			displayNewDash();
@@ -20,6 +21,7 @@ window.onload = function() {
 }
 
 
+const displayNewDash = () => {
 	let fancy_new_dash_template = `
 		<div id="fancy-new-dash">
 			<div class="container">
@@ -33,6 +35,7 @@ window.onload = function() {
 	$('#app').html(fancy_new_dash_template);
 }
 
+const displayOldDash = () => {
 	let old_dash_template = `
 		<div id="old-dash">
 			<div class="container">
