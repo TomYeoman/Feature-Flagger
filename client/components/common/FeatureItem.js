@@ -28,9 +28,9 @@ class FeatureItem extends React.Component {
 
   _toggleFeature(name) {
     console.log(this.state);
-    this.setState({on: !this.state.on})
     // Call parent component update function
     this.props.updateFeature(name, this.state.on);
+    this.setState({on: !this.state.on})
   }
 
   render () {

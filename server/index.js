@@ -16,7 +16,7 @@ let io = require('socket.io')(server);
 
 
 var sendFeatures = function (socket) {
-  fs.readFile('server/_features.json', 'utf8', function(err, features) {
+  fs.readFile('data/_features.json', 'utf8', function(err, features) {
     features = JSON.parse(features);
     socket.emit('features', features);
   });
@@ -26,28 +26,36 @@ io.on('connection', function (socket) {
   console.log('New client connected!');
   sendFeatures(socket);
 
-  fs.watch('server/_features.json', function (event, filename) {
+  fs.watch('data/_features.json', function (event, filename) {
     sendFeatures(socket);
   });
 
   socket.on("updateFeature", function (data){
     console.log(`TRYING TO UPDATE FEATURE ${data.name}`);
 
-    fs.readFile('server/_features.json', 'utf8', function(err, features) {
+    fs.readFile('data/_features.json', 'utf8', function(err, features) {
 
       features = JSON.parse(features);
-      //features.data.name.flag = data.flag;
 
-      console.log("PASSED IN NAME");
-      console.log(data.name);
       let FeatureName = data.name;
 
-      console.log("FOUND FEATURE NAME");
-      console.log(features.FeatureName);
+      for (var i = 0; i < features.length; i++) {
+        // If we can find an object which matches the name of the one we passed in
+        if (features[i][FeatureName] !== undefined){
+          console.log("BEFORE");
+          console.log(features[i][FeatureName]);
+          features[i][FeatureName].flag = data.flag;
+          console.log("AFTER");
+          console.log(features[i][FeatureName]);
+
+        }
+
+      }
+      console.log("FEATURES AFTER");
       console.log(features);
 
       // Write changes back to file
-      fs.writeFile('server/_features.json', JSON.stringify(features), function (err) {
+      fs.writeFile('data/_features.json', JSON.stringify(features), function (err) {
 
       });
     });
