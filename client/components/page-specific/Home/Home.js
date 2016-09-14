@@ -16,22 +16,29 @@ export default class Home extends React.Component{
       let featureObj = {}
       let tempFeatureArr = [];
 
-      for (var key in features) {
-          if (features.hasOwnProperty(key)) {
-              // do stuff
-              let featureObj = {
-                name: features[key].name,
-                description: features[key].description,
-                flag: features[key].flag,
-                getFeedback: features[key].feedback,
-                publicApi: key
-              }
-              tempFeatureArr.push(featureObj);
-          }
-      }
-      console.log("AYYY");
+      console.log(`Features: ${features}`);
+
+      // Loop through each feature
+      features.map((feature) => {
+        // For each filter grab the properties and store in new array (We use this flattened version to draw UI)
+        for (var key in feature) {
+            if (feature.hasOwnProperty(key)) {
+                // do stuff
+                let featureObj = {
+                  name: feature[key].name,
+                  description: feature[key].description,
+                  flag: feature[key].flag,
+                  getFeedback: feature[key].feedback,
+                  publicApi: key
+                }
+                tempFeatureArr.push(featureObj);
+            }
+        }
+      });
+
       console.log(tempFeatureArr);
 
+      // Hold our feature list in the application state
       this.state = {
           featureArr: tempFeatureArr,
           test: ""
@@ -43,17 +50,16 @@ export default class Home extends React.Component{
 
   }
 
-  componentDidMount() {
-      socket.on('connection', function (socket){
-      socket.on('requestFeatures', this._sendFeatures);
 
-    }
-  }
 
   _updateFeature(name, state){
     console.log(`Name = ${name}, State = ${state}`);
     console.log(this.state.featureArr);
-    socket.emit('sendFeatures', this.state.featureArr);
+    let featureUpdatePayload = {
+      name: name,
+      flag: state
+    }
+    socket.emit('updateFeature', featureUpdatePayload);
   }
 
   _sendFeatures() {
@@ -62,11 +68,8 @@ export default class Home extends React.Component{
 
   render () {
 
-    console.log(this.state.featureArr);
-
+    // Generate Feature list HTML
     let FeatureList = this.state.featureArr.map((feature) => {
-      console.log("looping");
-      console.log(feature.name);
       return (
           <FeatureItem
             title={feature.name}
@@ -79,18 +82,30 @@ export default class Home extends React.Component{
       );
     });
 
-    console.log(FeatureList);
-
     return (
         <div>
             <HeaderSmall
               text = "Control Panel"
               align = "center"
             />
-          <hr />
 
+          <hr />
           <div className="form-group">
               <button className="btn btn-primary btn-lg pull-right"> Add Feature </button>
+          </div>
+          <hr />
+
+          <div className="text-center feature-titles">
+            <div className="col-xs-3">
+              Name
+            </div>
+            <div className="col-xs-3">
+              Description
+            </div>
+            <div className="col-xs-3">
+              API
+            </div>
+
           </div>
           <hr />
           {FeatureList}
