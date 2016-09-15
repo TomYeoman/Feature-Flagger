@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon --watch server --exec babel-node -- server/index.js",
-    "test": "echo \"Error: no tests currently specified\" && exit 0"
+    "backupTest": "",
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",
+    "testTravis": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,9 @@
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
+    "coveralls": "^2.11.12",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2",
     "nodemon": "^1.9.2",
     "radium": "^0.18.1",
     "react-hot-loader": "^1.3.0",
