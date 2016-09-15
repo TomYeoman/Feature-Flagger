@@ -1,3 +1,5 @@
+# [Feature-Flagger](http://tomyeoman.com/flagger) for Node [![Test Status](https://coveralls.io/repos/github/TomYeoman/Feature-Flagger/badge.svg)](https://coveralls.io/github/TomYeoman/Feature-Flagger) [![Build Status](https://travis-ci.org/TomYeoman/Feature-Flagger.svg?branch=master)](https://travis-ci.org/TomYeoman/Feature-Flagger) 
+
 Incorporate flag driven development into your development today!
 
 This repo contains everything you need to adjust features in real time, whilst getting important feedback on your new system.
